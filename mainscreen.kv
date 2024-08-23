@@ -1,0 +1,1263 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+<IconListItem>
+
+<ContentNavigationDrawer>
+    MDList:
+        OneLineListItem:
+            text: "Home"
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.transition=FadeTransition()
+                root.screen_manager.current = "mainscreen"
+        OneLineListItem:
+            text: "Transaction"
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.transition=FadeTransition()
+                root.screen_manager.current = "transaction"
+        OneLineListItem:
+            text:"Product"
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.transition=FadeTransition()
+                root.screen_manager.current = "product"
+        OneLineListItem:
+            text:"Employee"
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.transition=FadeTransition()
+                root.screen_manager.current = "employee"
+
+        OneLineListItem:
+            text:"Customer"
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.transition=FadeTransition()
+                root.screen_manager.current = "customer"
+        OneLineListItem:
+            text:"Promo"
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.transition=FadeTransition()
+                root.screen_manager.current = "promo"
+
+MDScreen:
+    screen_manager:screen_manager
+    MDNavigationLayout:
+        MDScreenManager:
+            id:screen_manager
+            MDScreen:
+                name:'login'
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDTextField:
+                    id:username
+                    mode:'fill'
+                    size_hint:0.75,None
+                    pos_hint:{"center_x":.5 , "center_y": .80}
+                    hint_text:'Enter Username'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDTextField:
+                    id:password
+                    password:True
+                    size_hint:0.75,None
+                    pos_hint:{"center_x":.5 , "center_y": .70}
+                    hint_text:'Enter Password'
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDRaisedButton:
+                    id:submit
+                    size:0.08,0.08
+                    pos_hint:{"center_x":.3 , "center_y": .60}
+                    text:'Submit'
+                    on_press:app.checkedlog()
+
+                MDRaisedButton:
+                    id:loggedin
+                    size:0.08,0.09
+                    pos_hint:{"center_x":.65 , "center_y": .60}
+                    text:'Go to app'
+                    disabled:True
+                    on_press:
+                        root.screen_manager.current='mainscreen'
+
+            MDScreen:
+                name:"mainscreen"
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDTopAppBar:
+                    pos_hint: {"top": 1}
+                    elevation: 4
+                    title: "Supermarket"
+                    left_action_items:[["menu", lambda x: nav_drawer.set_state("open")]]
+
+                MDTextField:
+                    id:curemp
+                    mode:'rectangle'
+                    size_hint:0.75,None
+                    pos_hint:{"center_x":.5 , "center_y": .70}
+                    hint_text:'Enter Employee ID'
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDRaisedButton:
+                    id:submit
+                    size:0.1,0.1
+                    pos_hint:{"center_x":.2 , "center_y": .60}
+                    text:'Submit'
+                    on_press:app.employeeidsel()
+
+            MDScreen:
+                name:"transaction"
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDTopAppBar:
+                    pos_hint: {"top": 1}
+                    elevation: 4
+                    title: "Supermarket"
+                    left_action_items:[["menu", lambda x: nav_drawer.set_state("open")]]
+
+                MDLabel:
+                    text:"Product id:"
+                    size_hint:.375,None
+                    pos_hint:{"center_x":.2 , "center_y": .80}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDTextField:
+                    id: data
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the product id"
+                    pos_hint:{"center_x":.325 , "center_y": .80}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDLabel:
+                    text:"Quantity:"
+                    size_hint: .37,None
+                    pos_hint:{"center_x":.19 , "center_y": .70}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDTextField:
+                    id: quant
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the Quantity"
+                    pos_hint:{"center_x":.325 , "center_y": .70}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDLabel:
+                    id:curprice
+                    text:"Price:         Rs:0"
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.26 , "center_y": .60}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDRaisedButton:
+                    id:add
+                    text:"Add"
+                    size_hint: .08,.08
+                    pos_hint:{"center_x":.325 , "center_y": .60}
+                    on_press:app.addtransaction()
+
+                MDRaisedButton:
+                    text:"reset"
+                    size_hint: .08,.08
+                    pos_hint:{"center_x":.45 , "center_y": .60}
+                    on_press:app.addtobill()
+
+                MDLabel:
+                    pos_hint:{"center_x":1.2 , "center_y": .80}
+                    id:bill
+                    text:'Bill='
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDTextField:
+                    id:prm
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the promocode"
+                    pos_hint:{"center_x":.325 , "center_y": .50}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDLabel:
+                    text:"Promocode:"
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .50}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDTextField:
+                    id:custid
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the customer id"
+                    pos_hint:{"center_x":.325 , "center_y": .40}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDLabel:
+                    text:"Customer ID:"
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .40}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDRaisedButton:
+                    text:"Add"
+                    size_hint: .1,.1
+                    pos_hint:{"center_x":.325 , "center_y": .20}
+                    on_press:
+                        app.fulltransaction()
+                        root.screen_manager.current = "mainscreen"
+
+            MDScreen:
+                name:"product"
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDTopAppBar:
+                    pos_hint: {"top": 1}
+                    elevation: 4
+                    title: "Supermarket"
+                    left_action_items:[["menu", lambda x: nav_drawer.set_state("open")]]
+
+                MDLabel:
+                    text:'Product Name:'
+                    size_hint: .5,None
+                    pos_hint:{"center_x":.19 , "center_y": .80}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(15)
+
+                MDTextField:
+                    id:prodid
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the Product name"
+                    pos_hint:{"center_x":.325 , "center_y": .80}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDLabel:
+                    text:'Product Type:'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .70}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(15)
+
+                MDRaisedButton:
+                    id:field
+                    text:"Select:"
+                    size_hint: .375,.08
+                    pos_hint:{"center_x":.325 , "center_y": .70}
+                    on_press:
+                        app.menuitems.open()
+
+                MDLabel:
+                    text:'Supplier id'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .60}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(15)
+
+                MDRaisedButton:
+                    id:field_
+                    text:'Select:'
+                    size_hint: .375,.08
+                    pos_hint:{"center_x":.325 , "center_y": .60}
+                    on_press:
+                        app.suppitems.open()
+
+                MDLabel:
+                    text:'Market Price:'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .50}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(15)
+
+                MDTextField:
+                    id:markp
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the Market price"
+                    pos_hint:{"center_x":.325 , "center_y": .50}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDLabel:
+                    text:'Cost Price:'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .40}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(15)
+
+                MDTextField:
+                    id:costp
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the Market price"
+                    pos_hint:{"center_x":.325 , "center_y": .40}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDRaisedButton:
+                    text:"Add"
+                    size_hint: .375,.08
+                    pos_hint:{"center_x":.325 , "center_y": .30}
+                    on_press:
+                        app.prodpress()
+                        root.screen_manager.current = "mainscreen"
+
+                MDRaisedButton:
+                    text:'display'
+                    size_hint: .3,.08
+                    pos_hint:{"x":0.03 , "center_y": .10}
+                    on_press:
+                        root.screen_manager.current='productdisplay'
+
+                MDRaisedButton:
+                    text:'delete'
+                    size_hint: .3,.08
+                    pos_hint:{"x":.333 , "center_y": .10}
+                    on_press:
+                        root.screen_manager.current='productdelete'
+
+                MDRaisedButton:
+                    text:'update'
+                    size_hint: .3,.08
+                    pos_hint:{"x":.63 , "center_y": .10}
+                    on_press:
+                        root.screen_manager.current='productupdate'
+            MDScreen:
+                name:'productupdate'
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDRaisedButton:
+                    icon:'arrow-left'
+                    text:"Back"
+                    pos_hint:{"center_x":.05 , "center_y": 0.9}
+                    on_press:
+                        root.screen_manager.current='product'
+                MDTextField:
+                    size_hint:0.5,None
+                    id:produpdate
+                    pos_hint:{"center_x":.5 , "center_y": .30}
+                    hint_text:'Enter the product id'
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDTextField:
+                    size_hint:0.5,None
+                    pos_hint:{"center_x":.5 , "center_y": .20}
+                    id:updatedmrp
+                    hint_text:'Enter the new mrp'
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDRaisedButton:
+                    size_hint:0.1,0.1
+                    pos_hint:{"center_x":.5 , "center_y": .10}
+                    on_press:
+                        app.updateprod()
+                        root.screen_manager.current = "mainscreen"
+
+            MDScreen:
+                name:'productdelete'
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDRaisedButton:
+                    icon:'arrow-left'
+                    text:"Back"
+                    pos_hint:{"center_x":.05 , "center_y": 0.9}
+                    on_press:
+                        root.screen_manager.current='product'
+
+                MDTextField:
+                    size_hint:0.5,None
+                    pos_hint:{"center_x":.5 , "center_y": .2}
+                    id:proddelid
+                    hint_text:'Enter the product id'
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+
+                MDRaisedButton:
+                    pos_hint:{"center_x":.5 , "center_y": .10}
+                    on_press:
+                        app.delprod()
+
+            MDScreen:
+                name:'productdisplay'
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDRaisedButton:
+                    icon:'arrow-left'
+                    text:"Back"
+                    pos_hint:{"center_x":.05 , "center_y": 0.9}
+                    on_press:
+                        root.screen_manager.current='product'
+                MDLabel:
+                    id:prodidout
+                    pos_hint:{'x':0.1,'center_y':0.8}
+                    text:''
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+                MDLabel:
+                    id:prodnameout
+                    pos_hint:{'x':0.5,'center_y':0.8}
+                    text:''
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+                MDTextField:
+                    id:productdeptdisplayed
+                    size_hint:0.5,None
+                    pos_hint:{'center_x':0.5,'center_y':0.2}
+                    hint_text:"Enter department"
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDRaisedButton:
+                    text:'Submit'
+                    pos_hint:{"center_x":.4 , "center_y": 0.1}
+                    on_press:
+                        app.displaydeptproduct()
+                MDRaisedButton:
+                    pos_hint:{"center_x":.6 , "center_y": .1}
+                    text:'displayall'
+                    on_press:
+                        app.displayedallproduct()
+
+            MDScreen:
+                name:"employee"
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDTopAppBar:
+                    pos_hint: {"top": 1}
+                    elevation: 4
+                    title: "Supermarket"
+                    left_action_items:[["menu", lambda x: nav_drawer.set_state("open")]]
+
+                MDLabel:
+                    text:'Employee Name'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .85}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDTextField:
+                    id:empname
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the employee name"
+                    pos_hint:{"center_x":.375 , "center_y": .85}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDLabel:
+                    text:'Department:'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .75}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDRaisedButton:
+                    text:"Department"
+                    size_hint: .375,.08
+                    pos_hint:{"center_x":.375 , "center_y": .75}
+                    on_press:
+                        app.menuitems.open()
+
+                MDLabel:
+                    text:'Enter address'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .65}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDTextField:
+                    id:address
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the address"
+                    pos_hint:{"center_x":.375 , "center_y": .65}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDLabel:
+                    text:'Choose DOB'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .55}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDRaisedButton:
+                    text:"Choose DOB"
+                    size_hint: .375,.08
+                    pos_hint:{"center_x":.375 , "center_y": .55}
+                    on_press:app.show_date_picker()
+
+                MDLabel:
+                    text:'Enter Salary'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .45}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDTextField:
+                    id:salary
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the Salary"
+                    pos_hint:{"center_x":.375 , "center_y": .45}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDLabel:
+                    text:'Joining date'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .35}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDRaisedButton:
+                    text:"Choose joining date"
+                    size_hint: .375,.08
+                    pos_hint:{"center_x":.375 , "center_y": .35}
+                    on_press:app.show_date_picker_2()
+
+                MDLabel:
+                    text:'End date'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .25}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDRaisedButton:
+                    text:"Choose End date"
+                    size_hint: .375,.08
+                    pos_hint:{"center_x":.375 , "center_y": .25}
+                    on_press:app.show_date_picker_3()
+
+                MDRaisedButton:
+                    text:"Submit"
+                    size_hint: .375,.08
+                    pos_hint:{"center_x":.375 , "center_y": .15}
+                    on_press:
+                        app.employeepress()
+                        root.screen_manager.current = "mainscreen"
+
+                MDRaisedButton:
+                    text:"Update"
+                    size_hint: .3,.08
+                    pos_hint:{"center_x":.175 , "center_y": .05}
+                    on_press:root.screen_manager.current="employeeupdate"
+
+                MDRaisedButton:
+                    text:"Delete"
+                    size_hint: .3,.08
+                    pos_hint:{"center_x":.50 , "center_y": .05}
+                    on_press:root.screen_manager.current="employeedelete"
+
+                MDRaisedButton:
+                    text:"Display"
+                    size_hint: .3,.08
+                    pos_hint:{"center_x":.825 , "center_y": .05}
+                    on_press:root.screen_manager.current="employeedisplay"
+
+
+            MDScreen:
+                name:"employeedisplay"
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDRaisedButton:
+                    icon:'arrow-left'
+                    text:'Back'
+                    pos_hint:{"center_x":.1 , "center_y": .9}
+                    on_press:
+                        root.screen_manager.current='employee'
+                MDRaisedButton:
+                    text:"Display all"
+                    pos_hint:{"center_x":.15 , "center_y": .1}
+                    size_hint:.25,.08
+                    on_press:app.pressedempall()
+                MDTextField:
+                    id:check
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .5,None
+                    hint_text: "Enter the customer id"
+                    pos_hint:{"center_x":.5 , "center_y": .2}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDRaisedButton:
+                    text:"Show output"
+                    size_hint: .25,.08
+                    pos_hint:{"center_x":.5 , "center_y": .1}
+                    on_press:app.employeeundercust()
+
+                MDLabel:
+                    pos_hint:{'center_x':0.2,'center_y':0.8}
+                    size_hint_x:.2
+                    id:outputofemp
+                    text:''
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+            MDScreen:
+                name:"employeedelete"
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDRaisedButton:
+                    icon:'arrow-left'
+                    text:'Back'
+                    pos_hint:{"center_x":.1 , "center_y": .9}
+                    on_press:
+                        root.screen_manager.current='employee'
+
+                MDLabel:
+                    text:'Employee id'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .80}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDTextField:
+                    id:empid_d
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the Employee Id"
+                    pos_hint:{"center_x":.325 , "center_y": .80}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDRaisedButton:
+                    text:"Delete"
+                    pos_hint:{"center_x":.19 , "center_y": .70}
+                    on_press:
+                        app.empdel()
+
+
+            MDScreen:
+                name:"employeeupdate"
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDRaisedButton:
+                    icon:'arrow-left'
+                    text:'Back'
+                    pos_hint:{"center_x":.1 , "center_y": .95}
+                    on_press:
+                        root.screen_manager.current='employee'
+
+                MDLabel:
+                    text:"Enter Employee id"
+                    size_hint:.3,None
+                    pos_hint:{"center_x":.1 , "center_y": .85}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDTextField:
+                    id:emp_id
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the employee id"
+                    pos_hint:{"center_x":.325 , "center_y": .85}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDLabel:
+                    text:'Department:'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .75}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDRaisedButton:
+                    text:"Department"
+                    size_hint: .375,.08
+                    pos_hint:{"center_x":.325 , "center_y": .75}
+                    on_press:
+                        app.menuitems.open()
+
+                MDLabel:
+                    text:'Enter address'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .65}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDTextField:
+                    id:address_u
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the Address"
+                    pos_hint:{"center_x":.325 , "center_y": .65}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDLabel:
+                    text:'Enter Salary'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .55}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDTextField:
+                    id:salary_u
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the Salary"
+                    pos_hint:{"center_x":.325 , "center_y": .55}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDLabel:
+                    text:'End date'
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .45}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDRaisedButton:
+                    text:"Choose End date"
+                    size_hint: .375,.08
+                    pos_hint:{"center_x":.325 , "center_y": .45}
+                    on_press:app.show_date_picker_3()
+
+                MDRaisedButton:
+                    text:"Update"
+                    size_hint: .375,.08
+                    pos_hint:{"center_x":.325 , "center_y": .35}
+                    on_press:app.empupdate()
+
+            MDScreen:
+                name:"customer"
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDTopAppBar:
+                    pos_hint: {"top": 1}
+                    elevation: 4
+                    title: "Supermarket"
+                    left_action_items:[["menu", lambda x: nav_drawer.set_state("open")]]
+
+                MDLabel:
+                    text:"Name:"
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .85}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDTextField:
+                    id:name
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the name"
+                    pos_hint:{"center_x":.425 , "center_y": .85}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDLabel:
+                    text:"Customer join date:"
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .75}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDRaisedButton:
+                    text:"Choose date"
+                    size_hint: .375,.08
+                    pos_hint:{"center_x":.425 , "center_y": .75}
+                    on_press:app.show_date_picker()
+
+                MDLabel:
+                    text:"Address:"
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .65}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDTextField:
+                    id:address_c
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the address"
+                    pos_hint:{"center_x":.425 , "center_y": .65}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDLabel:
+                    text:"Phone number:"
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .55}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDTextField:
+                    id:number
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the phone number"
+                    pos_hint:{"center_x":.425 , "center_y": .55}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDRaisedButton:
+                    text:"Add the customer details"
+                    size_hint: .375,.08
+                    pos_hint:{"center_x":.425 , "center_y": .45}
+                    on_press:
+                        app.custpress()
+                        root.screen_manager.current = "mainscreen"
+
+                MDRaisedButton:
+                    id:displaycust
+                    text:"Display"
+                    size_hint:0.3,0.08
+                    pos_hint:{"center_y":.3}
+                    on_release:root.screen_manager.current="DisplayCustomer"
+
+            MDScreen:
+                name:"promo"
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDTopAppBar:
+                    pos_hint: {"top": 1}
+                    elevation: 4
+                    title: "Supermarket"
+                    left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+
+                MDLabel:
+                    text:"Discount"
+                    size_hint: .375,None
+                    pos_hint:{"center_x":.19 , "center_y": .75}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+                MDTextField:
+                    id:discount
+                    mode:"rectangle"
+                    icon_right:"pencil"
+                    size_hint: .375,None
+                    hint_text: "Enter the discount"
+                    pos_hint:{"center_x":.325 , "center_y": .75}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDRaisedButton:
+                    text:"Choose Validity"
+                    size_hint: .375,.08
+                    pos_hint:{"center_x":.325 , "center_y": .65}
+                    on_press:app.show_date_picker()
+
+                MDRaisedButton:
+                    text:"ADD PROMO"
+                    size_hint: .375,.08
+                    pos_hint:{"center_x":.325 , "center_y": .45}
+                    on_press:
+                        app.promopress()
+                        root.screen_manager.current='mainscreen'
+                MDTextField:
+                    id:departpromo
+                    mode:'rectangle'
+                    size_hint:0.375,None
+                    hint_text:"Choose department"
+                    pos_hint:{"center_x":0.325,"center_y": .55}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDRaisedButton:
+                    id:displayp
+                    size_hint:0.3,0.08
+                    text:"Display"
+                    pos_hint:{"center_x":.15}
+                    on_release:
+                        root.screen_manager.current="DisplayPromo"
+                MDRaisedButton:
+                    id:updatep
+                    text:"Update"
+                    size_hint:0.3,0.08
+                    pos_hint:{"center_x":.48}
+                    on_release:root.screen_manager.current="UpdatePromo"
+
+                MDRaisedButton:
+                    id:updatep
+                    size_hint:0.3,0.08
+                    text:"delete"
+                    pos_hint:{"center_x":.825}
+                    on_release:root.screen_manager.current="deletepromo"
+
+            MDScreen:
+                name:"UpdatePromo"
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDRaisedButton:
+                    icon:'arrow-left'
+                    text:'Back'
+                    pos_hint:{"center_x":.1 , "center_y": .9}
+                    on_press:
+                        root.screen_manager.current='promo'
+                MDTextField:
+                    id:promoin
+                    hint_text:"Enter Promo Code"
+                    pos_hint:{"center_y":.7}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDTextField:
+                    id:discountmf
+                    text:"Show"
+                    pos_hint:{"center_y":.5}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDRaisedButton:
+                    id:valpn
+                    text:"date"
+                    pos_hint:{"center_y":.3}
+                    on_release:app.show_date_picker()
+                MDRaisedButton:
+                    id:show
+                    text:"show"
+                    on_release:app.updatepr()
+            MDScreen:
+                name:"DisplayCustomer"
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDRaisedButton:
+                    icon:'arrow-left'
+                    text:'Back'
+                    pos_hint:{"center_x":.1 , "center_y": .95}
+                    on_press:
+                        root.screen_manager.current='customer'
+
+                MDTextField:
+                    id:empins
+                    hint_text:"Enter Employee ID"
+                    size_hint:0.375,None
+                    pos_hint:{"center_x":.3,"center_y":.2}
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDRaisedButton:
+                    id:submitcust
+                    text:"Submit"
+                    pos_hint:{"center_y":.3,'center_y':.2}
+                    on_release:app.displaycust()
+                MDLabel:
+                    id:discname
+                    text:""
+                    pos_hint:{"center_y":.4}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+                MDLabel:
+                    id:discjoin
+                    text:""
+                    pos_hint:{"center_y":.5}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+                MDLabel:
+                    id:dismoney
+                    text:""
+                    pos_hint:{"center_y":.6}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+                MDLabel:
+                    id:discaddress
+                    text:""
+                    pos_hint:{"center_y":.7}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+                MDLabel:
+                    id:discphone
+                    text:""
+                    pos_hint:{"center_y":.8}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+            MDScreen:
+                name:"DisplayPromo"
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDRaisedButton:
+                    icon:'arrow-left'
+                    text:'Back'
+                    pos_hint:{"center_x":.1 , "center_y": .9}
+                    on_press:
+                        root.screen_manager.current='employee'
+
+                MDTextField:
+                    id:textu
+                    hint_text:"Enter Department"
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDRaisedButton:
+                    id:buttonp
+                    text:"Submit"
+                    pos_hint:{"center_y":.3}
+                    on_release:app.releasepb()
+                MDLabel:
+                    id:discountp
+                    text:""
+                    pos_hint:{"center_x":.3}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+                MDLabel:
+                    id:validityp
+                    text:""
+                    pos_hint:{"center_x":.5}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+                MDLabel:
+                    id:deptp
+                    text:""
+                    pos_hint:{"center_x":.7}
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1
+                    font_size:dp(20)
+
+            MDScreen:
+                name:"deletepromo"
+                Image:
+                    id:images
+                    source:"no.jpg"
+                    pos: self.pos
+                    size_hint:1,1
+                    size: root.size
+                    allow_stretch:True
+                    keep_ratio:False
+                    opacity: 1.0
+                MDRaisedButton:
+                    icon:'arrow-left'
+                    text:'Back'
+                    pos_hint:{"center_x":.1 , "center_y": .9}
+                    on_press:
+                        root.screen_manager.current='employee'
+
+                MDTextField:
+                    id:promo_id_delete
+                    hint_text:"Enter Department"
+                    mode:'fill'
+                    fill_color_normal:204/255,229/255,1,1
+                    hint_text_color_normal: "black"
+
+                MDRaisedButton:
+                    id:buttonp
+                    text:"Submit"
+                    pos_hint:{"center_y":.3}
+                    on_release:app.delpromo()
+
+        MDNavigationDrawer:
+            id:nav_drawer
+            radius:(0, 16, 16, 0)
+            ContentNavigationDrawer:
+                screen_manager:screen_manager
+                nav_drawer:nav_drawer
