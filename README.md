@@ -1,53 +1,36 @@
-# Supermarket Management System
+﻿# Supermarket
 
 ## Overview
 
-The Supermarket Management System is a desktop application built with Kivy and Python. It offers functionalities to manage supermarket operations, including inventory management, sales tracking, and customer interactions.
+Kivy-based supermarket desktop/mobile interface prototype.
 
-## Features
+## Tech Stack
 
-- *Inventory Management*: Track and manage products, stock levels, and suppliers.
-- *Sales Tracking*: Process and record sales transactions.
-- *Customer Management*: Manage customer information and purchase history.
-- *Reporting*: Generate reports on sales, inventory levels, and other key metrics.
+- Python
+- Kivy
 
-## Installation
+## Repository Contents
 
-To set up the Supermarket Management System, follow these steps:
+- D:\Amd\repos_sync\Supermarket\.gitignore
+- D:\Amd\repos_sync\Supermarket\KGPrimaryPenmanship.ttf
+- D:\Amd\repos_sync\Supermarket\main.py
+- D:\Amd\repos_sync\Supermarket\mainscreen.kv
+- D:\Amd\repos_sync\Supermarket\no.jpg
+- D:\Amd\repos_sync\Supermarket\README.md
 
-1. *Clone the Repository*
-2. *Navigate to the Project Directory*
-3. *Install Kivy*: Ensure Kivy is installed on your system. Installation instructions can be found on the [Kivy website](https://kivy.org/doc/stable/gettingstarted/installation.html).
-4. *Run the Application*: Execute the main Python script to start the application.
+## Quick Start
 
-## Usage
+python -m venv .venv
+.venv\\Scripts\\activate   # Windows
+pip install -r requirements.txt
 
-After setting up, you can:
+python main.py
 
-- *Manage Inventory*: Add, update, and track products and stock levels.
-- *Process Sales*: Record sales transactions and manage receipts.
-- *Handle Customers*: View and update customer information and history.
-- *Generate Reports*: Access various reports on sales and inventory.
+## Data & Assets
 
-## Contributing
+- D:\Amd\repos_sync\Supermarket\no.jpg
 
-Contributions are welcome! To contribute:
+## Notes
 
-1. Fork the repository.
-2. Create a new branch for your changes.
-3. Commit your modifications.
-4. Push to your forked repository.
-5. Open a Pull Request with a description of your changes.
-
-## Contact
-
-For any questions or support, please reach out to [pnandan23@outlook.com](mailto:your.email@example.com).
----
-
-## Maintainer Update (March 2026)
-
-This README was refreshed for consistency across repositories in this GitHub profile.
-
-- Documentation baseline updated
-- Project-specific implementation details remain in code and repository history
-
+- README refreshed and standardized on March 2026.
+- Keep this file aligned with actual implementation updates.
